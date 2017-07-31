@@ -1,0 +1,4 @@
+192.168.31.128 - - [20/Jul/2017:15:25:07 +0800] "POST /external/tlm/updateConsultationStatus HTTP/1.1" 200 119 http-bio-8080-exec-1 434
+192.168.31.63 - - [20/Jul/2017:15:41:48 +0800] "GET /external/tlm/updateConsultationStatus HTTP/1.1" 405 1045 http-bio-8080-exec-2 24
+192.168.31.128 - - [20/Jul/2017:15:58:16 +0800] "POST /external/tlm/updateConsultationStatus HTTP/1.1" 200 119 http-bio-8080-exec-4 62
+192.168.31.128 - - [20/Jul/2017:16:00:25 +0800] "POST /external/tlm/updateConsultationStatus HTTP/1.1" 200 119 http-bio-8080-exec-1 521

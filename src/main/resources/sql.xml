@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!-- SQL -->
+    <sql-query name="sql_demo">
+        <![CDATA[select sysdate timenow from dual
+	]]>
+    </sql-query>
+
+    <sql-query name="sql_getp10009_1">
+        <![CDATA[SELECT u.OperId AS doctorId, d.DoctorHeadIcon AS doctorPhoto, d.DoctorName AS realName, d.DoctorTechpostName AS medicineTitle FROM user_oper u LEFT JOIN user_doctor_info d ON u.OperId = d.DoctorId where u.Account = ?
+	]]>
+    </sql-query>
+
+    <sql-query name="sql_getp10009_2">
+        <![CDATA[SELECT o.ClinicName , o.ClinicId FROM user_org_info o WHERE o.ClinicId IN (SELECT ud.ClinicId FROM user_doctor_relation ud WHERE ud.DoctorId = ?)
+	]]>
+    </sql-query>
+
+    <sql-query name="sql_QRcodePolling">
+        <![CDATA[SELECT d.DoctorHeadIcon AS doctorPhoto, u.OperId AS doctorId, u.Roles AS roles FROM user_oper u LEFT JOIN user_doctor_info d ON u.OperId = d.DoctorId where u.Account = ?
+	]]>
+    </sql-query>
+
+</hibernate-mapping>
