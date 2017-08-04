@@ -30,9 +30,8 @@ public class DoctorServiceImpl implements DoctorService {
         List<DoctorListBeanP10012> result = new ArrayList<DoctorListBeanP10012>();
 
         try {
-
+            //科室信息
             List<UserDeptInfo> deptList = deptDao.getListByClinicId(bean.getClinicId());
-
 
             for (UserDeptInfo dept : deptList) {
 

@@ -105,6 +105,7 @@ public class DoctorBeanP10013 {
     public void setDoctorTechpostName(String doctorTechpostName) {
         this.doctorTechpostName = doctorTechpostName;
     }
+
 }
 
 

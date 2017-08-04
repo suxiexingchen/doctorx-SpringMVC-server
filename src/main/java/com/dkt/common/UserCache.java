@@ -20,7 +20,7 @@ public class UserCache {
         }
         return userCache;
     }
-
+    // expireAfterAccess(long, TimeUnit)：最后一次访问后的一段时间移出；
     private Cache<String, String> tokenCache = CacheBuilder.newBuilder()
             .expireAfterAccess(30L, TimeUnit.MINUTES).build();
 

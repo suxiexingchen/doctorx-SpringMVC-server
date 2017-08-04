@@ -235,4 +235,6 @@ public class BizConsultation implements Serializable {
     public void setSuggestViewFlag(String suggestViewFlag) {
         this.suggestViewFlag = suggestViewFlag;
     }
+
+
 }

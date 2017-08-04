@@ -46,6 +46,10 @@ public interface SysConst {
      */
     String CONSULTATION_STATUS_WAIT_CHECK = "0";
     /**
+     * 5-待会诊
+     */
+    String CONSULTATION_STATUS_WAIT_CONSULTATION ="5";
+    /**
      * 会诊中.
      */
     String CONSULTATION_STATUS_ING = "10";

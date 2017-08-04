@@ -1,6 +1,7 @@
 package com.dkt.consultation.service.impl;
 
 import com.dkt.common.SysConst;
+import com.dkt.common.SysException;
 import com.dkt.consultation.bean.ConInfo;
 import com.dkt.consultation.bean.Img;
 import com.dkt.consultation.bean.p01.Request01;
@@ -24,8 +25,16 @@ import com.dkt.consultation.dao.BizConDao;
 import com.dkt.consultation.service.BizConImgService;
 import com.dkt.consultation.service.BizConService;
 import com.dkt.consultation.service.PatientService;
+import com.dkt.doctor.DoctorBeanP10013;
+import com.dkt.doctor.DoctorService;
+import com.dkt.doctor.RequestBeanP10013;
 import com.dkt.entity.BizConsultation;
+import com.dkt.entity.UserDeptInfo;
+import com.dkt.entity.UserOrgInfo;
 import com.dkt.entity.UserPatientInfo;
+import com.dkt.org.DeptDao;
+import com.dkt.org.OrgDao;
+import com.dkt.org.OrgRequestBean;
 import com.google.common.collect.Lists;
 import com.platform.bean.PageInfo;
 import com.platform.sms.SMSClient;
@@ -57,6 +66,11 @@ public class BizConServiceImpl implements BizConService {
     private BizConImgService bizConImgService;
     @Autowired
     private BizConDao bizConDao;
+    @Autowired
+    private DoctorService doctorService;
+    @Autowired
+    private OrgDao orgDao;
+
 
     @Transactional
     @Override
@@ -66,7 +80,8 @@ public class BizConServiceImpl implements BizConService {
         String empiId, consultationId;
         empiId = saveUpi(request);
         bc.setEmpiId(empiId);
-        bc.setStatus(SysConst.CONSULTATION_STATUS_WAIT_CHECK);
+        //初始化会诊状态
+        bc.setStatus(SysConst.CONSULTATION_STATUS_WAIT_CONSULTATION);
         bc.setSuggestViewFlag(SysConst.CONSULTATION_VIEW_FLAG_NO);
         bc.setConsultationCommitDate(Tools.getCurUnixTime());
         bc.setVedioTime(0);
@@ -89,11 +104,13 @@ public class BizConServiceImpl implements BizConService {
     }
 
     @Transactional
-    private String saveUpi(Request01 request) {
+     String saveUpi(Request01 request) {
         UserPatientInfo upi = new UserPatientInfo();
         BeanUtils.copyProperties(request, upi);
+
         upi.setInputTime(Tools.getCurUnixTime());
         upi.setInputDoctorId(request.getUserId());
+
         String existId = null;
         if (!StringUtils.isEmpty(request.getPatientMobile())) {
             existId = patientService.exist(upi.getPatientMobile());
@@ -101,11 +118,12 @@ public class BizConServiceImpl implements BizConService {
         if (StringUtils.isEmpty(existId)) {
             existId = patientService.save(upi);
         }
+
         return existId;
     }
 
     @Transactional
-    private void saveImg(String conId, Request01 request) {
+     void saveImg(String conId, Request01 request) {
         List<Img> imgs = request.getImages();
         for (Img one : imgs) {
             bizConImgService.saveImg(conId, one.getNormalUrl());
@@ -156,15 +174,64 @@ public class BizConServiceImpl implements BizConService {
     @Transactional
     @Override
     public Response04 getDetail(Request04 request) {
+
         BizConsultation bizConsultation = bizConDao.findOne(request.getConsultationId());
+
         Response04 response = new Response04();
         if (null != bizConsultation) {
             BeanUtils.copyProperties(bizConsultation, response);
+
+            response.setStatus(Integer.valueOf(bizConsultation.getStatus()));
             UserPatientInfo upi = patientService.findOne(bizConsultation.getEmpiId());
             if (null != upi) {
                 BeanUtils.copyProperties(upi, response);
             }
+            RequestBeanP10013 requestBeanP10013=new RequestBeanP10013();
+            requestBeanP10013.setDoctorId(bizConsultation.getUserId());
+            requestBeanP10013.setClinicId(bizConsultation.getClinicId());
+
+            RequestBeanP10013 destRequestBeanP10013=new RequestBeanP10013();
+            destRequestBeanP10013.setDoctorId(bizConsultation.getDestUserId());
+            destRequestBeanP10013.setClinicId(bizConsultation.getDestClinicId());
+
+            try {
+                //获取医生信息
+                DoctorBeanP10013 doctorBeanP10013 = doctorService.getDoctorDetail(requestBeanP10013);
+                DoctorBeanP10013 destDoctorBeanP10013 = doctorService.getDoctorDetail(destRequestBeanP10013);
+
+                if (doctorBeanP10013!=null){
+                    response.setEmployeeName(doctorBeanP10013.getDoctorName());
+                    response.setHeadIcon(doctorBeanP10013.getDoctorHeadIcon());
+
+                }
+                if (destDoctorBeanP10013!=null){
+                    response.setDestEmployeeName(destDoctorBeanP10013.getDoctorName());
+                    response.setDestHeadIcon(destDoctorBeanP10013.getDoctorHeadIcon());
+                }
+
+
+                //获取医院信息
+                List<UserOrgInfo> list = orgDao.getDoctorOrg(requestBeanP10013.getDoctorId());
+                List<UserOrgInfo> destList = orgDao.getDoctorOrg(destRequestBeanP10013.getDoctorId());
+
+                if (list!=null&&list.size()>0){
+                    response.setClinicName(list.get(0).getClinicName());
+                }
+                if (destList!=null&&destList.size()>0){
+                    response.setDestClinicName(destList.get(0).getClinicName());
+                }
+
+
+            } catch (SysException e) {
+                LOG.error(e.getMessage());
+            }
+
+
+
         }
+
+
+
         List<Img> imgs = bizConImgService.findByConId(request.getConsultationId());
         response.setImages(imgs);
         bizConDao.updateApptViewFlag(request.getConsultationId(), SysConst.CONSULTATION_APPT_VIEW_FLAG_YES);

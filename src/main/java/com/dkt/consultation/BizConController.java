@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,9 +50,11 @@ public class BizConController {
      * @param request
      * @return
      */
+    @CrossOrigin
     @ApiOperation(httpMethod = "POST", produces = "application/json", value = "01-提交预约申请", notes = "用于发起会诊预约时登记患者的基本信息和会诊请求描述")
     @PostMapping("external/tlm/applyConsultation")
     public CommonResponse<Response01> applyConsultation(@ApiParam(name="r01") @RequestBody Request01 request) {
+
         CommonResponse<Response01> result = new CommonResponse();
         Response01 response = new Response01();
         try {
@@ -65,6 +68,7 @@ public class BizConController {
         }
         result.setResult(response);
         return result;
+
     }
 
     /**
@@ -143,7 +147,9 @@ public class BizConController {
             Assert.notNull(request, "post数据转换异常");
             Assert.notNull(request.getConsultationId(), "consultationId不可为空");
             response = bizConService.getDetail(request);
+
             result.setSuccessMsg(SysConst.STATUS_SUCCESS);
+
         } catch(Exception e) {
             LOG.error(e.getMessage());
             result.setStatus(SysConst.STATUS_ERROR);

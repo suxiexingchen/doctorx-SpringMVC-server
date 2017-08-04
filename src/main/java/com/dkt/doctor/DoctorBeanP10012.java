@@ -39,6 +39,18 @@ public class DoctorBeanP10012 {
      * 系统内医生类别 2-值班医生，1-专家.
      */
     private String doctorWay;
+    /**
+     * 医生介绍
+     */
+    private String doctorArea;
+
+    public String getDoctorArea() {
+        return doctorArea;
+    }
+
+    public void setDoctorArea(String doctorArea) {
+        this.doctorArea = doctorArea;
+    }
 
     public String getDoctorId() {
         return doctorId;

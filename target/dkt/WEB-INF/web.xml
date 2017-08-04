@@ -4,10 +4,13 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
           http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
+
     <context-param>
         <param-name>webAppRootKey</param-name>
         <param-value>dkt.root</param-value>
     </context-param>
+
+    <!-- 设置上下文的读取 路径  -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
@@ -19,7 +22,7 @@
     <!-- log4j配置信息 -->
     <context-param>
         <param-name>log4jConfigLocation</param-name>
-        <param-value>/WEB-INF/classes/log4j.properties</param-value>
+        <param-value>classpath:log4j.properties</param-value>
     </context-param>
     <context-param>
         <param-name>log4jRefreshInterval</param-name>
@@ -29,8 +32,8 @@
     <listener>
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
     </listener>
-    <!-- log4j配置 -->
 
+    <!-- log4j配置 -->
     <listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
@@ -38,7 +41,7 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    <!--配置springmvc DispatcherServlet-->
+    <!--配置springmvc DispatcherServlet Springmvc的前端控制器 -->
     <servlet>
         <servlet-name>springMVC</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -49,9 +52,18 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>springMVC</servlet-name>
         <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>springMVC</servlet-name>
+        <url-pattern>*.htm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>springMVC</servlet-name>
+        <url-pattern>/v2/api-docs</url-pattern>
     </servlet-mapping>
 
     <!-- 设置字符集 -->
@@ -85,6 +97,7 @@
     <session-config>
         <session-timeout>20</session-timeout>
     </session-config>
+
 
     <!--welcome pages-->
     <welcome-file-list>

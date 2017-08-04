@@ -206,4 +206,25 @@ public class Request01 {
     public void setImages(List<Img> images) {
         this.images = images;
     }
+
+    @Override
+    public String toString() {
+        return "Request01{" +
+                "userId='" + userId + '\'' +
+                ", clinicId='" + clinicId + '\'' +
+                ", empiId='" + empiId + '\'' +
+                ", patientName='" + patientName + '\'' +
+                ", patientSex='" + patientSex + '\'' +
+                ", patientMobile='" + patientMobile + '\'' +
+                ", patientCertificateType='" + patientCertificateType + '\'' +
+                ", patientCertificateNum='" + patientCertificateNum + '\'' +
+                ", patientDescription='" + patientDescription + '\'' +
+                ", consultationReason='" + consultationReason + '\'' +
+                ", doctorWay='" + doctorWay + '\'' +
+                ", destUserId='" + destUserId + '\'' +
+                ", destClinicId='" + destClinicId + '\'' +
+                ", destDepartmentId='" + destDepartmentId + '\'' +
+                ", images=" + images +
+                '}';
+    }
 }
