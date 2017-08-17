@@ -26,6 +26,7 @@ public class T0001Controller {
 
     @RequestMapping(value = "external/loginByPwd", method = RequestMethod.POST)
     public CommonResponse<T0001ResponseBean> demo(@RequestBody T0001RequestBean request) {
+
         log.debug(JsonTool.toJsonStr(request,null));
         CommonResponse<T0001ResponseBean> result = new CommonResponse();
         T0001ResponseBean response = new T0001ResponseBean();

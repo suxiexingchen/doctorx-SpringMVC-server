@@ -1,7 +1,9 @@
 package com.dkt.consultation.service.impl;
 
+import com.dkt.ceshi.User;
 import com.dkt.common.SysConst;
 import com.dkt.common.SysException;
+import com.dkt.common.sendpost.*;
 import com.dkt.consultation.bean.ConInfo;
 import com.dkt.consultation.bean.Img;
 import com.dkt.consultation.bean.p01.Request01;
@@ -29,17 +31,16 @@ import com.dkt.doctor.DoctorBeanP10013;
 import com.dkt.doctor.DoctorService;
 import com.dkt.doctor.RequestBeanP10013;
 import com.dkt.entity.BizConsultation;
-import com.dkt.entity.UserDeptInfo;
 import com.dkt.entity.UserOrgInfo;
 import com.dkt.entity.UserPatientInfo;
-import com.dkt.org.DeptDao;
 import com.dkt.org.OrgDao;
-import com.dkt.org.OrgRequestBean;
 import com.google.common.collect.Lists;
+import com.google.gson.Gson;
 import com.platform.bean.PageInfo;
 import com.platform.sms.SMSClient;
 import com.platform.sms.SMSException;
 import com.platform.tool.Tools;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -311,5 +312,28 @@ public class BizConServiceImpl implements BizConService {
     @Override
     public void updateStatus(Request11 request) {
         bizConDao.updateStatus(request.getConsultationId(), request.getStatus());
+    }
+
+
+    public void sendPost(String clinicId) {
+        SendResponse01 response=new SendResponse01();
+        response.setType(SendConstant.TYPE_ZERO);
+
+        MessageResponse messageResponse = new MessageResponse();
+        messageResponse.setClientId(clinicId);
+        messageResponse.setGroupId("0");
+
+        ContentResponse contentResponse=new ContentResponse();
+        contentResponse.setPushTitle("预约申请");
+        contentResponse.setPushMessage("预约申请提交成功！");
+
+        messageResponse.setContent(contentResponse);
+        response.setMessage(messageResponse);
+
+
+        Gson gson=new Gson();
+        String  responseJson = gson.toJson(response);
+        SendPost sendPost=new SendPost();
+        sendPost.HttpSendPost(responseJson);
     }
 }

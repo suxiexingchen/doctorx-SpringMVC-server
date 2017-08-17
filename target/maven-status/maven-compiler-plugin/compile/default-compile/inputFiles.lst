@@ -1,5 +1,6 @@
 C:\D\doctorx-SpringMVC-server\src\main\java\com\platform\bean\WebResponse.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\pingxx\WebHooksEvent.java
+C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\common\sendpost\ContentResponse.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\common\CommonResponse.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\platform\tool\Tools.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\friends\ApplyDaoImpl.java
@@ -12,6 +13,7 @@ C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\login\QRLoginService.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\org\OrgService.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\consultation\dao\impl\PatientDaoImpl.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\ehcache\MyCacheEventListener.java
+C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\webhospital\WebHospitalService.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\platform\base\DictConst.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\entity\SysHuaweiAccount.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\platform\swagger\SwaggerConfig.java
@@ -35,6 +37,7 @@ C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\login\T0001RequestBean.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\login\PollingResponseBean.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\consultation\bean\p03\Request03.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\org\OrgDaoImpl.java
+C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\ceshi\HttpClientUtil.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\consultation\bean\p03\Response03.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\consultation\BizConController.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\online\SysHuaweiAccountDaoImpl.java
@@ -42,6 +45,7 @@ C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\consultation\bean\p02\Respon
 C:\D\doctorx-SpringMVC-server\src\main\java\com\platform\common\dao\impl\BaseDao.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\consultation\bean\p04\Response04.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\entity\SysOnlineListHistory.java
+C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\webhospital\WebDoctorInfoBean.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\consultation\dao\impl\BizConImgDaoImpl.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\login\P0013DaoImpl.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\entity\UserContactApply.java
@@ -70,6 +74,7 @@ C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\entity\SysDic.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\login\T0001DaoImpl.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\online\SysOnlineListHistoryDao.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\platform\bean\WebRequest.java
+C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\common\sendpost\SendPost.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\platform\bean\PageInfo.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\online\OnlineServiceImpl.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\consultation\service\impl\PatientServiceImpl.java
@@ -78,6 +83,7 @@ C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\entity\BizConsultation.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\entity\UserDoctorRelation.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\platform\base\SysException.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\platform\tool\JsonTool.java
+C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\webhospital\DepartmentBean.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\ehcache\QRcodeCache.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\login\QRLoginController.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\pingxx\PingxxController.java
@@ -90,14 +96,18 @@ C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\friends\RelationService.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\friends\RequestBeanP10016.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\online\SysHuaweiAccountDao.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\login\P0013Service.java
+C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\ceshi\SSLClient.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\org\OrgRequestBean.java
+C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\webhospital\WebHospitaBean.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\login\CheckQRRequestBean.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\platform\base\SysBaseImpl.java
+C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\common\sendpost\MessageResponse.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\entity\UserDoctorInfo.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\platform\bean\ConfigXmlBean.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\entity\UserOrgInfo.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\online\OnlineDao.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\friends\RequestBeanP10015.java
+C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\common\sendpost\SendConstant.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\common\SysException.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\common\UserCache.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\consultation\bean\p08\Request08.java
@@ -122,6 +132,7 @@ C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\doctor\DoctorListBeanP10012.
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\consultation\bean\p01\Request01.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\friends\ApplyService.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\friends\FriendsController.java
+C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\webhospital\HospitalController.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\consultation\dao\impl\BizConDaoImpl.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\consultation\bean\p04\Request04.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\ehcache\QRCacheEventListenerFactory.java
@@ -130,6 +141,8 @@ C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\online\SysOnlineListHistoryD
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\login\QRLoginDaoImpl.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\consultation\service\impl\BizConServiceImpl.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\org\DeptDao.java
+C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\ceshi\TestMain.java
+C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\webhospital\WebHospitalServiceImpl.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\pingxx\PingxxRequestBean.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\entity\UserDeptInfo.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\entity\UserContactRelation.java
@@ -143,8 +156,12 @@ C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\doctor\DoctorBeanP10009.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\friends\ApplyDao.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\ehcache\OnlineCacheSpring.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\consultation\bean\p09\Request09.java
+C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\webhospital\WebHospitalListResult.java
+C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\ceshi\User.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\login\QRLoginServiceImpl.java
+C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\ceshi\ceshi2.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\doctor\DoctorService.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\friends\RelationServiceImpl.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\login\T0001ResponseBean.java
 C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\org\OrgListBean.java
+C:\D\doctorx-SpringMVC-server\src\main\java\com\dkt\common\sendpost\SendResponse01.java

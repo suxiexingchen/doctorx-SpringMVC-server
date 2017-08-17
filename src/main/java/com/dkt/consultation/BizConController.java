@@ -2,6 +2,7 @@ package com.dkt.consultation;
 
 import com.dkt.common.CommonResponse;
 import com.dkt.common.SysConst;
+import com.dkt.common.sendpost.SendResponse01;
 import com.dkt.consultation.bean.p01.Request01;
 import com.dkt.consultation.bean.p01.Response01;
 import com.dkt.consultation.bean.p02.Request02;
@@ -32,6 +33,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by GD on 2017/6/17.
  */
@@ -53,7 +57,7 @@ public class BizConController {
     @CrossOrigin
     @ApiOperation(httpMethod = "POST", produces = "application/json", value = "01-提交预约申请", notes = "用于发起会诊预约时登记患者的基本信息和会诊请求描述")
     @PostMapping("external/tlm/applyConsultation")
-    public CommonResponse<Response01> applyConsultation(@ApiParam(name="r01") @RequestBody Request01 request) {
+    public CommonResponse<Response01> applyConsultation(@ApiParam(name="r01") @RequestBody Request01 request,HttpServletRequest httpRequest) {
 
         CommonResponse<Response01> result = new CommonResponse();
         Response01 response = new Response01();
@@ -61,12 +65,20 @@ public class BizConController {
             Assert.notNull(request, "请求协议错误");
             response = bizConService.applyConsultation(request);
             result.setSuccessMsg(SysConst.STATUS_SUCCESS);
+            //请求成功后推送消息
+            /*
+            HttpSession session = httpRequest.getSession();
+            System.out.println((String) session.getAttribute(com.platform.base.SysConst.SESSION_USER_NAME)+"=============");
+            bizConService.sendPost((String) session.getAttribute(com.platform.base.SysConst.SESSION_USER_NAME));
+            */
+
         } catch(Exception e) {
             LOG.error(e.getMessage());
             result.setStatus(SysConst.STATUS_ERROR);
             result.setErrorMsg(e.getMessage());
         }
         result.setResult(response);
+
         return result;
 
     }

@@ -20,11 +20,12 @@ public class OrgDaoImpl extends BaseDao<UserOrgInfo> implements OrgDao {
         List<UserOrgInfo> list = new ArrayList<UserOrgInfo>();
         StringBuilder whereSql = new StringBuilder("from UserOrgInfo ui where 1=1 ");
         List<String> params = new ArrayList<String>();
-
-        if (StringUtils.isNotBlank(bean.getClinicLevel()) && !bean.getClinicLevel().equals("-1")) {
-            whereSql.append(" and ui.clinicLevel =? ");
-            params.add(bean.getClinicLevel());
-        }
+            if (bean!=null) {
+                if (StringUtils.isNotBlank(bean.getClinicLevel()) && !bean.getClinicLevel().equals("-1")) {
+                    whereSql.append(" and ui.clinicLevel =? ");
+                    params.add(bean.getClinicLevel());
+                }
+            }
 
         whereSql.append(" order by ui.inputTime desc ");
         if (pageInfo != null) {

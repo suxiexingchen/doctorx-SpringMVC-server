@@ -33,6 +33,7 @@ public class UserCache {
     public String save(String account) {
         String token = UUID.randomUUID().toString().replace("-", "");
         tokenCache.put(token, account);
+
         return token;
     }
 

@@ -1,6 +1,7 @@
 package com.dkt.doctor;
 
 import com.dkt.entity.UserDoctorInfo;
+import com.dkt.webhospital.WebDoctorInfoBean;
 import com.platform.common.dao.impl.BaseDao;
 import org.springframework.stereotype.Repository;
 
@@ -35,6 +36,7 @@ public class DoctorDaoImpl extends BaseDao<UserDoctorInfo> implements DoctorDao 
         return list;
     }
 
+
     @Override
     public List<DoctorBeanP10009> getList(String account) {
 
@@ -67,6 +69,26 @@ public class DoctorDaoImpl extends BaseDao<UserDoctorInfo> implements DoctorDao 
         }
         dbList.add(db09);
         return dbList;
+    }
+
+    @Override
+    public List<UserDoctorInfo> getWebDoctorList(String departmentId) {
+
+        List<UserDoctorInfo> list = new ArrayList<UserDoctorInfo>();
+
+        StringBuilder whereSql = new StringBuilder("from UserDoctorInfo ui where ui.doctorId in (select ud.doctorId from UserDoctorRelation ud where ud.departmentId = ?) ");
+
+        List<String> params = new ArrayList<String>();
+        params.add(departmentId);
+
+        whereSql.append(" and ui.doctorWay = ? ");
+        params.add("2");
+
+        whereSql.append(" order by ui.doctorWay desc ");
+
+        list = getListByHQL(whereSql.toString(), null, params.toArray());
+
+        return list;
     }
 
 }

@@ -25,6 +25,7 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
         String url = request.getRequestURI();
 
         HttpSession session = request.getSession();
+
         log.debug(url);
 
         if (url.indexOf("logon") > -1 && session.getAttribute(SysConst.SESSION_USER_NAME) == null) {

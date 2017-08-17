@@ -33,4 +33,5 @@ public interface BizConService {
     Response09 listFinished(Request09 request);
     void updateApptTime(Request10 request);
     void updateStatus(Request11 request);
+    void sendPost(String clinicId);
 }

@@ -35,6 +35,7 @@ com\dkt\org\OrgDaoImpl.class
 com\dkt\online\OnlineCache$1.class
 com\dkt\consultation\bean\p02\Response02.class
 com\dkt\pingxx\WebHooksEvent.class
+com\dkt\webhospital\WebHospitalBean.class
 com\dkt\consultation\dao\PatientDao.class
 com\dkt\ehcache\OnlineCacheSpring.class
 com\dkt\org\OrgRequestBean.class
@@ -82,6 +83,7 @@ com\dkt\consultation\dao\BizConDao.class
 com\dkt\entity\BizConsultationImage.class
 com\dkt\online\OnlineDao.class
 com\platform\bean\PageInfo.class
+com\dkt\webhospital\WebDoctorInfoBean.class
 com\dkt\login\PollingRequestBean.class
 com\dkt\ehcache\MyCacheEventListenerFactory.class
 com\dkt\doctor\DoctorBeanP10009$Clinic.class
