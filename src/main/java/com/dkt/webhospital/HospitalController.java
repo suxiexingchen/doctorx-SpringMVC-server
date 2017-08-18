@@ -3,6 +3,8 @@ package com.dkt.webhospital;
 import com.dkt.common.CommonResponse;
 import com.dkt.common.SysConst;
 import com.dkt.common.SysException;
+import com.google.gson.Gson;
+import com.platform.tool.Tools;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,16 +33,26 @@ public class HospitalController {
     private static final Logger log = LoggerFactory.getLogger(HospitalController.class);
 
     @RequestMapping("/external/tlm/getWebDoctor")
-    public CommonResponse<List<WebHospitalBean<DepartmentBean<WebDoctorInfoBean>>>> getWebHospital(){
+    public CommonResponse<List<WebHospitalBean<DepartmentBean<WebDoctorInfoBean>>>> getWebHospital(HttpServletRequest request){
         CommonResponse<List<WebHospitalBean<DepartmentBean<WebDoctorInfoBean>>>> web=new CommonResponse<>();
 
         log.debug("开始获取机构医生信息");
 
         try {
             List<WebHospitalBean> webHospital=webHospitalService.getListWebHospitalBean();
+
             List list=new ArrayList();
-            if (list!=null&&list.size()>0) {
+            if (webHospital!=null&&webHospital.size()>0) {
                 for (WebHospitalBean hospial : webHospital) {
+                    try {
+                        String logolcon = hospial.getLogolcon();
+                        String logoURL = Tools.getIpAndPort(request, logolcon);
+                        hospial.setLogolcon(logoURL);
+                    } catch (UnknownHostException e) {
+                        e.printStackTrace();
+                        log.debug("获取服务器IP错误");
+                    }
+
                     list.add(hospial);
                 }
                 web.setResult(list);
@@ -52,6 +67,5 @@ public class HospitalController {
         return web;
 
     }
-
 
 }

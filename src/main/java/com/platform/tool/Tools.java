@@ -1,5 +1,7 @@
 package com.platform.tool;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,6 +13,8 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.DigestUtils;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * ClassName：Tools
@@ -62,6 +66,15 @@ public class Tools {
             log4j.error("{} 解析异常，使用当前时间", dTime);
             return new Date();
         }
+    }
+    //获取服务器IP和端口号
+    public static String getIpAndPort(HttpServletRequest request,String relativePath ) throws UnknownHostException {
+
+        //String hostAddress = InetAddress.getLocalHost().getHostAddress();
+        //hostAddress+":"+request.getLocalPort()
+
+        String absolutePath ="http://123.57.173.19:8080/dkt/"+relativePath;
+        return absolutePath;
     }
 
 }

@@ -15,8 +15,17 @@ public class WebHospitalBean<T> {
     private String clinicId;
     private String clinicIcon;
     private String clinicIntroduce;
+    private String logolcon;
     private List<T> departmentList
             = new ArrayList<>();
+
+    public String getLogolcon() {
+        return logolcon;
+    }
+
+    public void setLogolcon(String logolcon) {
+        this.logolcon = logolcon;
+    }
 
     public String getClinicId() {
         return clinicId;

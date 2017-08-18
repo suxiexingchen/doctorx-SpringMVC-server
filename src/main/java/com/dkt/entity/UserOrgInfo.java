@@ -59,6 +59,24 @@ public class UserOrgInfo implements Serializable {
     @Column(name = "InputOperId")
     private String inputOperId;
 
+
+
+    /**
+     * 医院LOGO
+     * @return
+     */
+    @Column(name = "logolcon")
+    private String logolcon;
+
+
+    public String getLogolcon() {
+        return logolcon;
+    }
+
+    public void setLogolcon(String logolcon) {
+        this.logolcon = logolcon;
+    }
+
     public String getClinicId() {
         return clinicId;
     }

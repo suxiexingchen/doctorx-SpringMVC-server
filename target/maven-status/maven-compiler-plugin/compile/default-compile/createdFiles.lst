@@ -59,6 +59,7 @@ com\dkt\doctor\DoctorBeanP10009.class
 com\platform\bean\WebResponse.class
 com\dkt\common\SysConst.class
 com\dkt\login\T0001RequestBean.class
+com\dkt\common\uploadPicture\UploadPicture.class
 com\platform\common\dao\IBaseDao.class
 com\platform\base\SysException.class
 com\platform\common\ErrorCode.class
