@@ -21,7 +21,7 @@ public class SessionInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
+        log.debug("进入拦截器");
         String url = request.getRequestURI();
 
         HttpSession session = request.getSession();

@@ -5,12 +5,14 @@ import com.dkt.common.UserCache;
 import com.dkt.entity.UserDeptInfo;
 import com.dkt.entity.UserDoctorInfo;
 import com.dkt.org.DeptDao;
+import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,7 +80,7 @@ public class DoctorServiceImpl implements DoctorService {
         return db;
     }
 
-    @Override
+
     public DoctorBeanP10009 getDoctorDetail(String ticket) throws SysException {
 
         try{
@@ -89,6 +91,41 @@ public class DoctorServiceImpl implements DoctorService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Transactional
+    public void setOnlineStatus(RequestBeanP10014 request) throws SysException {
+        UserDoctorInfo doctor =null;
+        if (request.getDoctorId()!=null) {
+            doctor = doctorDao.get(UserDoctorInfo.class, request.getDoctorId());
+        }else{
+            throw new SysException(null,"ID不能为空");
+        }
+        if (doctor!=null) {
+            doctor.setOnlinestatus(request.getOnlineStatus());
+            doctorDao.update(doctor);
+        }else{
+            throw new SysException(null,"医生找不到");
+        }
+
+    }
+
+    @Transactional
+    public void setTVN(RequestBeanP10015 request) throws SysException {
+
+        List<UserDoctorInfo> doctorList = doctorDao.getDoctorByTVN(request.getTvn());
+        for (UserDoctorInfo doctor:doctorList) {
+            doctor.setTvn(null);
+            doctorDao.update(doctor);
+
+
+        }
+        UserDoctorInfo info = doctorDao.get(UserDoctorInfo.class, request.getDoctorId());
+        if (info!=null) {
+            info.setTvn(request.getTvn());
+            doctorDao.update(info);
+        }
+
     }
 
 }

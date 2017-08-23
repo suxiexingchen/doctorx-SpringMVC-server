@@ -42,6 +42,33 @@ public class WebDoctorInfoBean {
      */
     private String doctorArea;
 
+    /**
+     * 医生在线状态，0-不在线，1-在线
+     * @return
+     */
+    private String onlinestatus;
+
+    /**
+     * 医生TVN号（盒子号）
+     */
+    private String tvn;
+
+    public String getOnlinestatus() {
+        return onlinestatus;
+    }
+
+    public void setOnlinestatus(String onlinestatus) {
+        this.onlinestatus = onlinestatus;
+    }
+
+    public String getTvn() {
+        return tvn;
+    }
+
+    public void setTvn(String tvn) {
+        this.tvn = tvn;
+    }
+
     public String getDoctorId() {
         return doctorId;
     }

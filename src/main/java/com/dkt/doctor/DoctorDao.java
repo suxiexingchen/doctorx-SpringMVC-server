@@ -16,4 +16,7 @@ public interface DoctorDao extends IBaseDao<UserDoctorInfo> {
 
     //根据departmentId获取网络医生
     public List<UserDoctorInfo> getWebDoctorList(String departmentId);
+
+    //根据TVN的值找到
+    public List<UserDoctorInfo> getDoctorByTVN(String TVN);
 }

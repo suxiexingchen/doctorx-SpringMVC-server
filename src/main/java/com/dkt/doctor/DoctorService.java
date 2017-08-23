@@ -13,4 +13,8 @@ public interface DoctorService {
     public DoctorBeanP10013 getDoctorDetail(RequestBeanP10013 bean) throws SysException;
 
     public DoctorBeanP10009 getDoctorDetail(String ticket) throws SysException;
+
+    public void setOnlineStatus(RequestBeanP10014 request) throws SysException;
+
+    public void setTVN(RequestBeanP10015 request)throws SysException;
 }

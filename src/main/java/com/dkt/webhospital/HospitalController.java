@@ -44,18 +44,15 @@ public class HospitalController {
             List list=new ArrayList();
             if (webHospital!=null&&webHospital.size()>0) {
                 for (WebHospitalBean hospial : webHospital) {
-                    try {
-                        String logolcon = hospial.getLogolcon();
-                        String logoURL = Tools.getIpAndPort(request, logolcon);
-                        hospial.setLogolcon(logoURL);
-                    } catch (UnknownHostException e) {
-                        e.printStackTrace();
-                        log.debug("获取服务器IP错误");
-                    }
 
+                    String logolcon = hospial.getLogolcon();
+                    String logoURL = SysConst.PREFIX_URL+logolcon;
+                    hospial.setLogolcon(logoURL);
                     list.add(hospial);
+
                 }
                 web.setResult(list);
+
             }
         } catch (SysException e) {
             web.setStatus(SysConst.STATUS_ERROR);

@@ -76,7 +76,7 @@ public class DoctorDaoImpl extends BaseDao<UserDoctorInfo> implements DoctorDao 
 
         List<UserDoctorInfo> list = new ArrayList<UserDoctorInfo>();
 
-        StringBuilder whereSql = new StringBuilder("from UserDoctorInfo ui where ui.doctorId in (select ud.doctorId from UserDoctorRelation ud where ud.departmentId = ?) ");
+        StringBuilder whereSql = new StringBuilder("from UserDoctorInfo ui where ui.doctorId in (select ud.doctorId from UserDoctorRelation ud where ud.departmentId = ?)");
 
         List<String> params = new ArrayList<String>();
         params.add(departmentId);
@@ -90,5 +90,18 @@ public class DoctorDaoImpl extends BaseDao<UserDoctorInfo> implements DoctorDao 
 
         return list;
     }
+
+    @Override
+    public List<UserDoctorInfo> getDoctorByTVN(String TVN) {
+
+        List<UserDoctorInfo> list = new ArrayList<UserDoctorInfo>();
+        StringBuilder whereSql = new StringBuilder("from UserDoctorInfo ui where ui.tvn = ?");
+        List<String> params = new ArrayList<String>();
+        params.add(TVN);
+        list = getListByHQL(whereSql.toString(), null, params.toArray());
+
+        return list;
+    }
+
 
 }

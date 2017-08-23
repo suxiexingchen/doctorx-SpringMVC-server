@@ -3,8 +3,6 @@ package com.dkt.doctor;
 import com.dkt.common.CommonResponse;
 import com.dkt.common.SysConst;
 import com.dkt.common.SysException;
-import com.dkt.org.OrgListBean;
-import com.dkt.org.OrgRequestBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +73,35 @@ public class DoctorController {
             DoctorBeanP10013 db = service.getDoctorDetail(request);
             wr.setResult(db);
 
+        } catch (SysException e) {
+            wr.setStatus(SysConst.STATUS_ERROR);
+            wr.setErrorCode(e.getCode());
+            wr.setErrorMsg(e.getError());
+        }
+        return wr;
+    }
+
+    @RequestMapping("/external/setOnlineStatus")
+    public CommonResponse setOnlineStatus(@RequestBody RequestBeanP10014 request){
+         CommonResponse wr=new CommonResponse();
+        log.debug("设置医生在线状态");
+        try {
+            service.setOnlineStatus(request);
+        } catch (SysException e) {
+            wr.setStatus(SysConst.STATUS_ERROR);
+            wr.setErrorCode(e.getCode());
+            wr.setErrorMsg(e.getError());
+        }
+
+        return wr;
+    }
+
+    //设置医生视频通话号码
+    @RequestMapping("/external/setTVN")
+    public CommonResponse setTVN(@RequestBody RequestBeanP10015 request){
+        CommonResponse wr=new CommonResponse();
+        try {
+            service.setTVN(request);
         } catch (SysException e) {
             wr.setStatus(SysConst.STATUS_ERROR);
             wr.setErrorCode(e.getCode());

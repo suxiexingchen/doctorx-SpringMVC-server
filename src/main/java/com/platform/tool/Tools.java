@@ -67,14 +67,6 @@ public class Tools {
             return new Date();
         }
     }
-    //获取服务器IP和端口号
-    public static String getIpAndPort(HttpServletRequest request,String relativePath ) throws UnknownHostException {
 
-        //String hostAddress = InetAddress.getLocalHost().getHostAddress();
-        //hostAddress+":"+request.getLocalPort()
-
-        String absolutePath ="http://123.57.173.19:8080/dkt/"+relativePath;
-        return absolutePath;
-    }
 
 }

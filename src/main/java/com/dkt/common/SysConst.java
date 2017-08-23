@@ -83,4 +83,18 @@ public interface SysConst {
      * TV
      */
     String DEV_TYPE_TV = "2";
+    /**
+     * 应用程序是否发行 0不发行
+     */
+    Integer ISSUE_FALSE=0;
+    /**
+     * 应用程序是否发行 1发行
+     */
+    Integer ISSUE_TRUE=1;
+
+    /**
+     * 环境地址配置
+     */
+    //String  PREFIX_URL="http://10.63.64.70:8099/dkt/";//河南有线地址
+    String  PREFIX_URL="http://192.168.31.78:8080/";//本地测试地址
 }
