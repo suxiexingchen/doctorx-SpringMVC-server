@@ -9,7 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,8 +34,8 @@ public class HospitalController {
 
     private static final Logger log = LoggerFactory.getLogger(HospitalController.class);
 
-    @RequestMapping("/external/tlm/getWebDoctor")
-    public CommonResponse<List<WebHospitalBean<DepartmentBean<WebDoctorInfoBean>>>> getWebHospital(HttpServletRequest request){
+    @RequestMapping(value = "/external/getWebDoctor")
+    public CommonResponse<List<WebHospitalBean<DepartmentBean<WebDoctorInfoBean>>>> getWebHospital(){
         CommonResponse<List<WebHospitalBean<DepartmentBean<WebDoctorInfoBean>>>> web=new CommonResponse<>();
 
         log.debug("开始获取机构医生信息");

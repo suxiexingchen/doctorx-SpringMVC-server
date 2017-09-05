@@ -50,6 +50,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -95,9 +96,11 @@ public class BizConServiceImpl implements BizConService {
 
         // 短信发送
         try {
+            List list=new ArrayList<String>();
+            list.add("11111");
             SMSClient.getInstance().init().withMessage("message").withTopic("topic")
                     .withParams("key", "value").withTemplateCode("templateCode")
-                    .withReceiver("11111").send();
+                    .withReceiver(list).send();
         } catch (SMSException e) {
             LOG.error("短信发送失败: {}, teleNo.{}", e.getMessage(), "1111");
         }

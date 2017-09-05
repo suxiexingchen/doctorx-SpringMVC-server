@@ -35,9 +35,7 @@ public class DoctorController {
             List<DoctorListBeanP10012> list = service.getList(request);
             dlr.setDoctorList(list);
             wr.setResult(dlr);
-
         } catch (SysException e) {
-
             wr.setStatus(SysConst.STATUS_ERROR);
             wr.setErrorCode(e.getCode());
             wr.setErrorMsg(e.getError());

@@ -10,6 +10,7 @@ import com.aliyun.mns.model.RawTopicMessage;
 import com.aliyun.mns.model.TopicMessage;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,6 +32,7 @@ import java.util.Map;
 public class SMSClient {
 
     private static SMSClient mInstance;
+
 
     /** AccessID*/
     private String accessId = "LTAISy3b5UwvpK0o";
@@ -178,7 +180,7 @@ public class SMSClient {
      * @param phoneNumbers
      * @return
      */
-    public SMSClient withReceiver(String ... phoneNumbers) throws SMSException {
+    public SMSClient withReceiver(List<String> phoneNumbers) throws SMSException {
         if(!isInit) throw new SMSException("you must call init() before setReceiver");
         if(!isSetParams) throw new SMSException("you must call withParams() before setReceiver");
         // 添加接受短信的号码

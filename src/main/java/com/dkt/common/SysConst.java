@@ -92,6 +92,17 @@ public interface SysConst {
      */
     Integer ISSUE_TRUE=1;
 
+
+    /**
+     * 推送服务的notification_title标题
+     */
+    String JPUSH_NOTIFICATION_TITLE="万家医视";
+
+    /**
+     * 此字段的值是用来指定本推送要推送的apns环境，false表示开发，true表示生产；对android和自定义消息无意义
+     */
+    Boolean APNS_ENVIRONMENT=true;
+
     /**
      * 环境地址配置
      */
