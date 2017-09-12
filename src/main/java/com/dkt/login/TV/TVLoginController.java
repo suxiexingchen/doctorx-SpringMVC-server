@@ -4,8 +4,6 @@ import com.dkt.common.CommonResponse;
 import com.dkt.common.SysConst;
 import com.dkt.doctor.DoctorDao;
 import com.dkt.entity.UserDoctorInfo;
-import com.dkt.login.T0001Controller;
-import com.dkt.login.T0001RequestBean;
 import com.dkt.login.T0001ResponseBean;
 import com.dkt.login.T0001Service;
 import com.platform.tool.JsonTool;
@@ -19,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.IOException;
 
 /**
  * @author 馒头花卷儿
@@ -35,9 +35,11 @@ public class TVLoginController {
     private T0001Service service;
     @Autowired
     private DoctorDao doctorDao;
+    @Autowired
+    private TVLoginService tvLoginService;
 
     @RequestMapping(value = "external/loginTVByPwd", method = RequestMethod.POST)
-    public CommonResponse<TV0001ResponseBean<TV0001DoctorBean>> demo(@RequestBody T0001RequestBean request) {
+    public CommonResponse<TV0001ResponseBean<TV0001DoctorBean>> demo(@RequestBody TV0001RequestBean request) {
 
         log.debug(JsonTool.toJsonStr(request,null));
         CommonResponse<TV0001ResponseBean<TV0001DoctorBean>> result = new CommonResponse();
@@ -57,7 +59,16 @@ public class TVLoginController {
             TV0001DoctorBean bean=new TV0001DoctorBean();
             BeanUtils.copyProperties(info, bean);
 
+
+            //创建会议室
+            String meetingNumber = tvLoginService.createMeeting(request.getVideoType(), info);
+            if (null!=meetingNumber){
+                bean.setTvn(meetingNumber);
+            }
+
+
             tvResult.setDoctor(bean);
+
 
             result.setSuccessMsg(SysConst.STATUS_SUCCESS);
         } catch(IllegalArgumentException e1) {

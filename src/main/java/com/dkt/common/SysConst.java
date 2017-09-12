@@ -92,6 +92,11 @@ public interface SysConst {
      */
     Integer ISSUE_TRUE=1;
 
+    /**
+     * 需要创建的视频类型：xy：小鱼易连；
+     */
+    String VIDEOTYPE_XY="xy";
+
 
     /**
      * 推送服务的notification_title标题
@@ -107,5 +112,6 @@ public interface SysConst {
      * 环境地址配置
      */
     //String  PREFIX_URL="http://10.63.64.70:8099/dkt/";//河南有线地址
-    String  PREFIX_URL="http://192.168.31.78:8080/";//本地测试地址
+    //String  PREFIX_URL="http://192.168.31.78:8080/";//本地测试地址
+    String  PREFIX_URL="http://api.wanjiayishi.com/dkt/";//本地测试地址
 }

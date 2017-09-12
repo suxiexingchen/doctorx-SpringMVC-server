@@ -63,7 +63,7 @@ public class TV0001DoctorBean {
     /**
      * 医生TVN号（盒子号）
      */
-    private String TVN;
+    private String tvn;
 
     public String getDoctorId() {
         return doctorId;
@@ -145,11 +145,11 @@ public class TV0001DoctorBean {
         this.onlinestatus = onlinestatus;
     }
 
-    public String getTVN() {
-        return TVN;
+    public String getTvn() {
+        return tvn;
     }
 
-    public void setTVN(String TVN) {
-        this.TVN = TVN;
+    public void setTvn(String tvn) {
+        this.tvn = tvn;
     }
 }

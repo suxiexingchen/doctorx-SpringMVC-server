@@ -47,9 +47,6 @@ public class HospitalController {
             if (webHospital!=null&&webHospital.size()>0) {
                 for (WebHospitalBean hospial : webHospital) {
 
-                    String logolcon = hospial.getLogolcon();
-                    String logoURL = SysConst.PREFIX_URL+logolcon;
-                    hospial.setLogolcon(logoURL);
                     list.add(hospial);
 
                 }

@@ -40,6 +40,7 @@ public class T0001ServiceImpl implements T0001Service {
     public T0001ResponseBean findByUp(String userName, String passwd, String appType) throws IllegalAccessException {
         UserOper userOper = t0001Dao.findByUp(userName, Hashing.md5().newHasher()
                 .putString(passwd, Charsets.UTF_8).hash().toString());
+
         T0001ResponseBean trb = new T0001ResponseBean();
         if (null == userOper){
             throw new IllegalArgumentException("用户不存在");

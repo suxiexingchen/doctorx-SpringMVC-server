@@ -1,6 +1,5 @@
 package com.dkt.entity;
 
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
