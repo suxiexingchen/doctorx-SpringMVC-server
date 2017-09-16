@@ -1,4 +1,4 @@
-package com.dkt.internteCollege;
+package com.dkt.internetCollege;
 
 import com.dkt.entity.TVAct;
 import com.dkt.entity.TVProgram;
@@ -22,11 +22,11 @@ public class CollegeServiceImpl implements CollegeService {
     @Autowired
     private TVActDao tvActDao;
 
-    public List<ProgramBeanP0001<TVActBeanP0001>> getProgramAndAct(){
+    public List<ProgramBeanP0001<TVActBeanP0001>> getProgramAndAct(String programType){
 
         List<ProgramBeanP0001<TVActBeanP0001>> list=new ArrayList<>();
 
-        List<TVProgram> listTVProgram = tvProgramDao.getProgramList();
+        List<TVProgram> listTVProgram = tvProgramDao.getProgramList(programType);
 
         for (TVProgram tp:listTVProgram) {
             ProgramBeanP0001 programBeanP0001=new ProgramBeanP0001();

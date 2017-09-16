@@ -1,4 +1,4 @@
-package com.dkt.internteCollege;
+package com.dkt.internetCollege;
 
 import java.util.ArrayList;
 import java.util.List;

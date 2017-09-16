@@ -3,6 +3,7 @@ package com.dkt.doctor;
 import com.dkt.common.CommonResponse;
 import com.dkt.common.SysConst;
 import com.dkt.common.SysException;
+import com.platform.tool.JsonTool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +106,29 @@ public class DoctorController {
             wr.setErrorCode(e.getCode());
             wr.setErrorMsg(e.getError());
         }
+        return wr;
+    }
+
+    //根据社区ID获取所有机构下的签约医生
+    @RequestMapping("/external/getFamilyDoctorsByCommunityId")
+    public CommonResponse getFamilyDoctorsByCommunityId(@RequestBody RequestBeanP10016 request){
+        CommonResponse<
+                List<ResponseClinicC0001<
+                        ResponseDepartmentD0001<
+                                ResponseDoctorT0001>>>> wr=new CommonResponse();
+        try {
+            if (null!=request.getCommunityId()){
+                List familyDoctorsByCommunityId = service.getFamilyDoctorsByCommunityId(request.getCommunityId());
+                wr.setResult(familyDoctorsByCommunityId);
+            }
+
+        } catch (SysException e) {
+            wr.setStatus(SysConst.STATUS_ERROR);
+            wr.setErrorCode(e.getCode());
+            wr.setErrorMsg(e.getError());
+        }
+
+        log.debug(JsonTool.toJsonStr(wr,null));
         return wr;
     }
 }

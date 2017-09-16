@@ -1,12 +1,12 @@
-package com.dkt.internteCollege;
+package com.dkt.internetCollege;
 
 import com.dkt.common.CommonResponse;
 import com.dkt.common.SysConst;
-import com.platform.tool.JsonTool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,18 +26,24 @@ public class CollegeController {
     private CollegeService collegeService;
 
     @RequestMapping("/external/getInternetCollege")
-    public CommonResponse<List<ProgramBeanP0001<TVActBeanP0001>>> getInternateCollege(){
+    public CommonResponse<List<ProgramBeanP0001<TVActBeanP0001>>> getInternateCollege(@RequestBody CollegeRequestP0001 request){
+
+
+        if (null==request.getProgramType()||"".equals(request.getProgramType())){
+            request.setProgramType(SysConst.programType_INTERNETCollege);
+            log.debug("获取网络学院");
+        }
 
         CommonResponse<List<ProgramBeanP0001<TVActBeanP0001>>> wr = null;
         try {
             log.debug("开始获取栏目，节目");
-            List<ProgramBeanP0001<TVActBeanP0001>> programAndAct = collegeService.getProgramAndAct();
+            List<ProgramBeanP0001<TVActBeanP0001>> programAndAct = collegeService.getProgramAndAct(request.getProgramType());
 
             wr = new CommonResponse<>();
             wr.setResult(programAndAct);
         } catch (Exception e) {
             e.printStackTrace();
-            //wr.setStatus(SysConst.STATUS_ERROR);
+            wr.setStatus(SysConst.STATUS_ERROR);
 
         }
         return wr;

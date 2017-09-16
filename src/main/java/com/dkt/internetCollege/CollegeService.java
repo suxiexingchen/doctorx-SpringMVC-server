@@ -1,4 +1,4 @@
-package com.dkt.internteCollege;
+package com.dkt.internetCollege;
 
 import java.util.List;
 
@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface CollegeService {
 
-    public List<ProgramBeanP0001<TVActBeanP0001>> getProgramAndAct();
+    public List<ProgramBeanP0001<TVActBeanP0001>> getProgramAndAct(String programType);
 }

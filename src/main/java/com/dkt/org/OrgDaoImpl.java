@@ -1,5 +1,6 @@
 package com.dkt.org;
 
+import com.dkt.entity.TVAct;
 import com.dkt.entity.UserOrgInfo;
 import com.platform.bean.PageInfo;
 import com.platform.common.dao.impl.BaseDao;
@@ -48,4 +49,35 @@ public class OrgDaoImpl extends BaseDao<UserOrgInfo> implements OrgDao {
 
         return list;
     }
+
+    public List<UserOrgInfo> getDoctorOrgByCommunityId(Integer communityId) {
+
+        List<UserOrgInfo> list = new ArrayList<UserOrgInfo>();
+        StringBuilder whereSql = new StringBuilder("from UserOrgInfo org where 1=1 ");
+        List<String> params = new ArrayList<String>();
+        if (null!=communityId) {
+            whereSql.append(" and org.communityId = ? ");
+            params.add(communityId.toString());
+
+            //whereSql.append(" order by act.commitTime desc ");
+
+            list = getListByHQL(whereSql.toString(), null, params.toArray());
+        }
+        return list;
+    }
+
+    public List<UserOrgInfo> getDoctorOrgHasDoctor(String doctorWay){
+
+        List<UserOrgInfo> list = new ArrayList<UserOrgInfo>();
+        StringBuilder whereSql = new StringBuilder("from UserOrgInfo ui where ui.clinicId in (select ud.clinicId from UserDoctorRelation ud where ud.doctorId in (select us.doctorId from UserDoctorInfo us where us.doctorWay = ?))");
+        List<String> params = new ArrayList<String>();
+        params.add(doctorWay);
+
+        whereSql.append(" order by ui.inputTime desc ");
+        list = getListByHQL(whereSql.toString(), null, params.toArray());
+
+        return list;
+    }
+
+
 }

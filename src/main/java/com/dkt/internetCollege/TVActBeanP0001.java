@@ -1,6 +1,4 @@
-package com.dkt.internteCollege;
-
-import java.util.Date;
+package com.dkt.internetCollege;
 
 /**
  * @author 馒头花卷儿

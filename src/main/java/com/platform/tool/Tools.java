@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Formatter;
+import java.util.List;
 import java.util.UUID;
 
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -66,6 +67,16 @@ public class Tools {
             log4j.error("{} 解析异常，使用当前时间", dTime);
             return new Date();
         }
+    }
+
+    public static boolean isListNotNull(List list){
+
+        if (null!=list&&list.size()>0){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
 

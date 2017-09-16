@@ -29,6 +29,13 @@ public class TVProgram implements Serializable {
     @Column(name = "programName", length = 45)
     private String programName;
 
+    /**
+     * programType栏目类型：1-网络学院，2-慢性病管理
+     */
+    @Column(name = "programType", length = 11)
+    private String programType;
+
+
     public Integer getProgramId() {
         return programId;
     }
@@ -43,5 +50,13 @@ public class TVProgram implements Serializable {
 
     public void setProgramName(String programName) {
         this.programName = programName;
+    }
+
+    public String getProgramType() {
+        return programType;
+    }
+
+    public void setProgramType(String programType) {
+        this.programType = programType;
     }
 }

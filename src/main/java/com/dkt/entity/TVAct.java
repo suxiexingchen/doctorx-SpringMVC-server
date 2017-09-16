@@ -35,13 +35,13 @@ public class TVAct implements Serializable{
     /**
      * 视频地址
      */
-    @Column(name = "actURL", length = 45)
+    @Column(name = "actURL", length = 500)
     private String actURL;
 
     /**
      * 缩略图
      */
-    @Column(name = "actPic", length = 45)
+    @Column(name = "actPic", length = 500)
     private String actPic;
 
     /**

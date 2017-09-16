@@ -13,4 +13,6 @@ public interface OrgDao extends IBaseDao<UserOrgInfo> {
 
     public List<UserOrgInfo> getList(OrgRequestBean bean, PageInfo pageInfo);
     public List<UserOrgInfo> getDoctorOrg(String doctorId);
+    public List<UserOrgInfo> getDoctorOrgByCommunityId(Integer communityId);
+    public List<UserOrgInfo> getDoctorOrgHasDoctor(String doctorWay);
 }

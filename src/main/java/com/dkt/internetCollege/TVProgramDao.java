@@ -1,4 +1,4 @@
-package com.dkt.internteCollege;
+package com.dkt.internetCollege;
 
 import com.dkt.entity.TVProgram;
 import com.platform.common.dao.IBaseDao;
@@ -12,5 +12,5 @@ import java.util.List;
  */
 public interface TVProgramDao extends IBaseDao<TVProgram> {
 
-    public List<TVProgram> getProgramList();
+    public List<TVProgram> getProgramList(String programType);
 }

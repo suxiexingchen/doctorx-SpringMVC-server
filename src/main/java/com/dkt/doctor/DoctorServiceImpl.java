@@ -4,7 +4,10 @@ import com.dkt.common.SysException;
 import com.dkt.common.UserCache;
 import com.dkt.entity.UserDeptInfo;
 import com.dkt.entity.UserDoctorInfo;
+import com.dkt.entity.UserOrgInfo;
 import com.dkt.org.DeptDao;
+import com.dkt.org.OrgDao;
+import com.platform.tool.Tools;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,6 +30,8 @@ public class DoctorServiceImpl implements DoctorService {
     private DoctorDao doctorDao;
     @Autowired
     private DeptDao deptDao;
+    @Autowired
+    private OrgDao orgDao;
 
     public List<DoctorListBeanP10012> getList(RequestBeanP10012 bean) throws SysException {
         List<DoctorListBeanP10012> result = new ArrayList<DoctorListBeanP10012>();
@@ -126,6 +131,66 @@ public class DoctorServiceImpl implements DoctorService {
             doctorDao.update(info);
         }
 
+    }
+
+    @Override
+    public List getFamilyDoctorsByCommunityId(Integer communityId) throws SysException {
+
+        List<ResponseClinicC0001<ResponseDepartmentD0001<ResponseDoctorT0001>>> list=new ArrayList<>();
+
+        List<UserOrgInfo> OrgByList = orgDao.getDoctorOrgByCommunityId(communityId);
+
+        if (Tools.isListNotNull(OrgByList)){
+            log.debug("已获取到医院信息");
+            for (UserOrgInfo org:OrgByList) {
+
+                ResponseClinicC0001 responseClinicC0001=new ResponseClinicC0001();
+                BeanUtils.copyProperties(org,responseClinicC0001);
+
+                if(null!=org.getClinicId()){
+                    List<UserDeptInfo> deptlist = deptDao.getListByClinicId(org.getClinicId());
+                    List<ResponseDepartmentD0001<ResponseDoctorT0001>> departmentList=new ArrayList<>();
+
+                    if (Tools.isListNotNull(deptlist)){
+                        log.debug("已获取到科室信息");
+                        for (UserDeptInfo dep:deptlist) {
+                            ResponseDepartmentD0001 responseDepartmentD0001=new ResponseDepartmentD0001();
+                            BeanUtils.copyProperties(dep,responseDepartmentD0001);
+
+                                if (null!=dep.getDepartmentId()){
+                                    List<ResponseDoctorT0001> doctorList=new ArrayList<>();
+                                    List<UserDoctorInfo> doctorIsFamily = doctorDao.getDoctorIsFamily(dep.getDepartmentId());
+
+                                    if (Tools.isListNotNull(doctorIsFamily)){
+                                        log.debug("已获取到家庭医生信息");
+
+                                        for (UserDoctorInfo doc:doctorIsFamily) {
+                                            ResponseDoctorT0001 responseDoctorT0001=new ResponseDoctorT0001();
+                                            BeanUtils.copyProperties(doc,responseDoctorT0001);
+                                            doctorList.add(responseDoctorT0001);
+                                        }
+                                        responseDepartmentD0001.setDoctorList(doctorList);
+                                    }
+
+
+                                }
+
+                            departmentList.add(responseDepartmentD0001);
+                        }
+                        responseClinicC0001.setDepartmentList(departmentList);
+                    }
+
+
+                }
+
+                list.add(responseClinicC0001);
+            }
+
+
+        }
+
+
+        return list;
     }
 
 }

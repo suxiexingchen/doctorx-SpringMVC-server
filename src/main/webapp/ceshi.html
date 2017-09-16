@@ -27,14 +27,34 @@
 
         function ceshi() {
             //http://localhost:8080/external/tlm/getWebDoctor
-
-            var result={ "alias":"1","work":"1","name":"nihao"};
+            //http://localhost:8080/external/getInternetCollege
+            var result={ "doctorWay":"1" };
             var str = JSON.stringify(result);
             alert(str);
 
             $.ajax({
-                url:"http://localhost:8080/external/getInternetCollege",
-                //data:str,
+                url:"http://localhost:8080/external/getWebDoctor",
+                data:str,
+                type:"post",
+                dateType:"json",
+                contentType:"application/json;charset=utf-8",
+                success:function(data){
+
+                },
+                error:function(){}
+            });
+        }
+
+
+
+        function ceshiNewList() {
+            var result={ "communityId":"1"};
+            var str = JSON.stringify(result);
+            alert(str);
+
+            $.ajax({
+                url:"http://localhost:8080/external/getFamilyDoctorsByCommunityId",
+                data:str,
                 type:"post",
                 dateType:"json",
                 contentType:"application/json;charset=utf-8",
@@ -52,6 +72,7 @@
 
         <button type="button" onclick="onLoad();">登陆</button>
         <button type="button" onclick="ceshi();">hospital测试</button><br>
+        <button type="button" onclick="ceshiNewList();">news接口测试</button><br>
 
         <form action="/external/uploadImage" method="post" enctype="multipart/form-data">
             <input name="pic" id="pic" type="file" />

@@ -7,6 +7,8 @@ import com.dkt.entity.UserDoctorInfo;
 import com.dkt.entity.UserOrgInfo;
 import com.dkt.org.DeptDao;
 import com.dkt.org.OrgDao;
+import com.platform.tool.JsonTool;
+import com.platform.tool.Tools;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -31,28 +33,30 @@ public class WebHospitalServiceImpl implements WebHospitalService {
     @Autowired
     private DoctorDao doctorDao;
     //获取所有的医院全部信息
-    public List<WebHospitalBean> getListWebHospitalBean() throws SysException {
+    public List<WebHospitalBean> getListWebHospitalBean(String doctorWay) throws SysException {
 
-        List<UserOrgInfo> list = orgDao.getList(null, null);
-
-        if (list!=null&&list.size()>0){
+        List<UserOrgInfo> doctorOrgHasDoctor = orgDao.getDoctorOrgHasDoctor(doctorWay);
+        if (Tools.isListNotNull(doctorOrgHasDoctor)){
             log.debug("开始获取医院信息");
+
             List<WebHospitalBean> listHos=new ArrayList<>();
-            for (UserOrgInfo uoi:list) {
+            for (UserOrgInfo uoi:doctorOrgHasDoctor) {
                 WebHospitalBean webHospitaBean = new WebHospitalBean();
                 BeanUtils.copyProperties(uoi, webHospitaBean);
                 listHos.add(webHospitaBean);
 
-                List<UserDeptInfo> listByClinicId = deptDao.getListByClinicId(webHospitaBean.getClinicId());
-                if (listByClinicId != null && listByClinicId.size() > 0) {
+                List<UserDeptInfo> listDept = deptDao.getListByClinicIdHasDoctor(webHospitaBean.getClinicId(), doctorWay);
+
+                if (Tools.isListNotNull(listDept)) {
+
                     log.debug("开始获取科室信息");
                     List<DepartmentBean> departmentList = new ArrayList<>();
-                    for (UserDeptInfo uif : listByClinicId) {
+                    for (UserDeptInfo uif : listDept) {
                         DepartmentBean departmentBean = new DepartmentBean();
                         BeanUtils.copyProperties(uif, departmentBean);
                         departmentList.add(departmentBean);
 
-                        List<UserDoctorInfo> webDoctorList = doctorDao.getWebDoctorList(departmentBean.getDepartmentId());
+                        List<UserDoctorInfo> webDoctorList = doctorDao.getWebDoctorList(departmentBean.getDepartmentId(),doctorWay);
                         if (webDoctorList != null && webDoctorList.size() > 0) {
                             log.debug("开始获取医生信息");
                             List<WebDoctorInfoBean> webDoctorInfoBeanList = new ArrayList<>();
@@ -66,7 +70,6 @@ public class WebHospitalServiceImpl implements WebHospitalService {
                     }
                     webHospitaBean.setDepartmentList(departmentList);
 
-
                 }
             }
             return listHos;
@@ -74,7 +77,6 @@ public class WebHospitalServiceImpl implements WebHospitalService {
 
         return null;
     }
-
 
 
 }

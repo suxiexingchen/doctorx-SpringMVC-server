@@ -4,7 +4,9 @@ import com.dkt.common.CommonResponse;
 import com.dkt.common.SysConst;
 import com.dkt.common.SysException;
 import com.google.gson.Gson;
+import com.platform.tool.JsonTool;
 import com.platform.tool.Tools;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,23 +37,30 @@ public class HospitalController {
     private static final Logger log = LoggerFactory.getLogger(HospitalController.class);
 
     @RequestMapping(value = "/external/getWebDoctor")
-    public CommonResponse<List<WebHospitalBean<DepartmentBean<WebDoctorInfoBean>>>> getWebHospital(){
+    public CommonResponse<List<WebHospitalBean<DepartmentBean<WebDoctorInfoBean>>>> getWebHospital(@RequestBody WeHospitalRequestW0001 request){
         CommonResponse<List<WebHospitalBean<DepartmentBean<WebDoctorInfoBean>>>> web=new CommonResponse<>();
 
         log.debug("开始获取机构医生信息");
 
+        if (StringUtils.isBlank(request.getDoctorWay())){
+            request.setDoctorWay("2");
+        }
+
         try {
-            List<WebHospitalBean> webHospital=webHospitalService.getListWebHospitalBean();
+            List<WebHospitalBean> webHospital=webHospitalService.getListWebHospitalBean(request.getDoctorWay());
 
             List list=new ArrayList();
-            if (webHospital!=null&&webHospital.size()>0) {
+            if (Tools.isListNotNull(webHospital)) {
                 for (WebHospitalBean hospial : webHospital) {
 
                     list.add(hospial);
 
                 }
-                web.setResult(list);
 
+
+
+                web.setResult(list);
+                log.debug(JsonTool.toJsonStr(web,null));
             }
         } catch (SysException e) {
             web.setStatus(SysConst.STATUS_ERROR);

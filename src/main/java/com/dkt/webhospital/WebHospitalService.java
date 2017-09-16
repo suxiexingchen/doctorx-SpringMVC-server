@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface WebHospitalService {
 
-    public List<WebHospitalBean> getListWebHospitalBean() throws SysException;
+    public List<WebHospitalBean> getListWebHospitalBean(String doctorWay) throws SysException;
 }

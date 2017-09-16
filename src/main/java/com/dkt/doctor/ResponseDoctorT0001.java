@@ -1,10 +1,15 @@
-package com.dkt.webhospital;
+package com.dkt.doctor;
 
 /**
  * @author 馒头花卷儿
- * @create 2017-08-16
+ * @Description:医生参数
+ * @create 2017-09-14
  */
-public class WebDoctorInfoBean {
+public class ResponseDoctorT0001 {
+
+    /**
+     * 医生ID, 主键.
+     */
     private String doctorId;
 
     /**
@@ -32,15 +37,30 @@ public class WebDoctorInfoBean {
      */
     private String doctorTechpostName;
 
+    /**
+     * 医生联系方式（手机号）.
+     */
+    private String doctorMobile;
 
     /**
-     * 系统内医生类别 0-值班医生，1-专家,2-网络医生.
-     */
-    private String doctorWay;
-    /**
-     * 医生介绍
+     * 医生介绍.
      */
     private String doctorArea;
+
+    /**
+     * 系统内医生类别 2-值班医生，1-专家.
+     */
+    private String doctorWay;
+
+    /**
+     * 录入时间时间戳.
+     */
+    private Integer inputTime;
+
+    /**
+     * 录入操作员ID.
+     */
+    private String inputOperId;
 
     /**
      * 医生在线状态，0-不在线，1-在线
@@ -57,22 +77,6 @@ public class WebDoctorInfoBean {
      * 是否是家庭医生 0不是 1是
      */
     private Integer isFamilyDoctor;
-
-    public String getOnlinestatus() {
-        return onlinestatus;
-    }
-
-    public void setOnlinestatus(String onlinestatus) {
-        this.onlinestatus = onlinestatus;
-    }
-
-    public String getTvn() {
-        return tvn;
-    }
-
-    public void setTvn(String tvn) {
-        this.tvn = tvn;
-    }
 
     public String getDoctorId() {
         return doctorId;
@@ -122,12 +126,12 @@ public class WebDoctorInfoBean {
         this.doctorTechpostName = doctorTechpostName;
     }
 
-    public String getDoctorWay() {
-        return doctorWay;
+    public String getDoctorMobile() {
+        return doctorMobile;
     }
 
-    public void setDoctorWay(String doctorWay) {
-        this.doctorWay = doctorWay;
+    public void setDoctorMobile(String doctorMobile) {
+        this.doctorMobile = doctorMobile;
     }
 
     public String getDoctorArea() {
@@ -136,6 +140,46 @@ public class WebDoctorInfoBean {
 
     public void setDoctorArea(String doctorArea) {
         this.doctorArea = doctorArea;
+    }
+
+    public String getDoctorWay() {
+        return doctorWay;
+    }
+
+    public void setDoctorWay(String doctorWay) {
+        this.doctorWay = doctorWay;
+    }
+
+    public Integer getInputTime() {
+        return inputTime;
+    }
+
+    public void setInputTime(Integer inputTime) {
+        this.inputTime = inputTime;
+    }
+
+    public String getInputOperId() {
+        return inputOperId;
+    }
+
+    public void setInputOperId(String inputOperId) {
+        this.inputOperId = inputOperId;
+    }
+
+    public String getOnlinestatus() {
+        return onlinestatus;
+    }
+
+    public void setOnlinestatus(String onlinestatus) {
+        this.onlinestatus = onlinestatus;
+    }
+
+    public String getTvn() {
+        return tvn;
+    }
+
+    public void setTvn(String tvn) {
+        this.tvn = tvn;
     }
 
     public Integer getIsFamilyDoctor() {

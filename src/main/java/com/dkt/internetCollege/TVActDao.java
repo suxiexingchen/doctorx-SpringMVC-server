@@ -1,4 +1,4 @@
-package com.dkt.internteCollege;
+package com.dkt.internetCollege;
 
 import com.dkt.entity.TVAct;
 import com.platform.common.dao.IBaseDao;

@@ -17,4 +17,6 @@ public interface DoctorService {
     public void setOnlineStatus(RequestBeanP10014 request) throws SysException;
 
     public void setTVN(RequestBeanP10015 request)throws SysException;
+
+    public List getFamilyDoctorsByCommunityId(Integer communityId)throws SysException;
 }

@@ -65,6 +65,11 @@ public class TV0001DoctorBean {
      */
     private String tvn;
 
+    /**
+     * 是否是家庭医生 0不是 1是
+     */
+    private Integer isFamilyDoctor;
+
     public String getDoctorId() {
         return doctorId;
     }
@@ -151,5 +156,13 @@ public class TV0001DoctorBean {
 
     public void setTvn(String tvn) {
         this.tvn = tvn;
+    }
+
+    public Integer getIsFamilyDoctor() {
+        return isFamilyDoctor;
+    }
+
+    public void setIsFamilyDoctor(Integer isFamilyDoctor) {
+        this.isFamilyDoctor = isFamilyDoctor;
     }
 }

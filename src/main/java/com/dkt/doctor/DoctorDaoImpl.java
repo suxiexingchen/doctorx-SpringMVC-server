@@ -72,7 +72,7 @@ public class DoctorDaoImpl extends BaseDao<UserDoctorInfo> implements DoctorDao 
     }
 
     @Override
-    public List<UserDoctorInfo> getWebDoctorList(String departmentId) {
+    public List<UserDoctorInfo> getWebDoctorList(String departmentId,String doctorWay) {
 
         List<UserDoctorInfo> list = new ArrayList<UserDoctorInfo>();
 
@@ -82,7 +82,7 @@ public class DoctorDaoImpl extends BaseDao<UserDoctorInfo> implements DoctorDao 
         params.add(departmentId);
 
         whereSql.append(" and ui.doctorWay = ? ");
-        params.add("2");
+        params.add(doctorWay);
 
         whereSql.append(" order by ui.doctorWay desc ");
 
@@ -98,6 +98,45 @@ public class DoctorDaoImpl extends BaseDao<UserDoctorInfo> implements DoctorDao 
         StringBuilder whereSql = new StringBuilder("from UserDoctorInfo ui where ui.tvn = ?");
         List<String> params = new ArrayList<String>();
         params.add(TVN);
+        list = getListByHQL(whereSql.toString(), null, params.toArray());
+
+        return list;
+    }
+
+    @Override
+    public List<UserDoctorInfo> getDoctorIsFamily(String departmentId) {
+        List<UserDoctorInfo> list = new ArrayList<UserDoctorInfo>();
+
+        StringBuilder whereSql = new StringBuilder("from UserDoctorInfo ui where ui.doctorId in (select ud.doctorId from UserDoctorRelation ud where ud.departmentId = ?)");
+
+        List<String> params = new ArrayList<String>();
+        params.add(departmentId);
+
+        whereSql.append(" and ui.isFamilyDoctor = ? ");
+        params.add("1");
+
+        whereSql.append(" order by ui.doctorWay desc ");
+
+        list = getListByHQL(whereSql.toString(), null, params.toArray());
+
+        return list;
+
+    }
+
+    //根据条件查询对应的医生
+    public List<UserDoctorInfo> getDoctorByQuery(String doctorWay) {
+
+        List<UserDoctorInfo> list = new ArrayList<UserDoctorInfo>();
+
+        StringBuilder whereSql = new StringBuilder("from UserDoctorInfo ui where 1=1 ");
+
+        List<String> params = new ArrayList<String>();
+
+        whereSql.append(" and ui.doctorWay = ? ");
+        params.add(doctorWay);
+
+        whereSql.append(" order by ui.doctorWay desc ");
+
         list = getListByHQL(whereSql.toString(), null, params.toArray());
 
         return list;

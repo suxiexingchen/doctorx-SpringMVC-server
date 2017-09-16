@@ -1,86 +1,66 @@
-package com.dkt.entity;
+package com.dkt.doctor;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * 医院表.
- *
- * Created by GD on 2017/6/14.
+ * @author 馒头花卷儿
+ * @Description:
+ * @create 2017-09-14
  */
-@Entity
-@Table(name = "user_org_info")
-public class UserOrgInfo implements Serializable {
+public class ResponseClinicC0001<T> {
+    /**
+     * 科室List
+     */
+    private List<T> departmentList
+            = new ArrayList<>();
 
     /**
      * 机构ID, 主键.
      */
-    @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    @Column(name = "ClinicId", length = 36)
     private String clinicId;
 
     /**
      * 机构名称.
      */
-    @Column(name = "ClinicName")
     private String clinicName;
 
     /**
      * 机构类型 1-综合医院 2-诊所.
      */
-    @Column(name = "ClinicLevel", length = 1)
     private String clinicLevel;
 
     /**
      * 机构图片URL.
      */
-    @Column(name = "ClinicIcon")
     private String clinicIcon;
 
     /**
      * 机构介绍.
      */
-    @Column(name = "ClinicIntroduce", columnDefinition = "TEXT")
     private String clinicIntroduce;
 
     /**
      * 录入时间.
      */
-    @Column(name = "InputTime", length = 11)
     private Integer inputTime;
 
     /**
      * 录入操作员ID.
      */
-    @Column(name = "InputOperId")
     private String inputOperId;
 
     /**
      * 医院LOGO
      * @return
      */
-    @Column(name = "logolcon")
     private String logolcon;
 
     /**
      * 医院 所属社区ID  所属那个社区
      * @return
      */
-    @Column(name = "communityId")
     private Integer communityId;
-
-
-    public String getLogolcon() {
-        return logolcon;
-    }
-
-    public void setLogolcon(String logolcon) {
-        this.logolcon = logolcon;
-    }
 
     public String getClinicId() {
         return clinicId;
@@ -136,5 +116,29 @@ public class UserOrgInfo implements Serializable {
 
     public void setInputOperId(String inputOperId) {
         this.inputOperId = inputOperId;
+    }
+
+    public String getLogolcon() {
+        return logolcon;
+    }
+
+    public void setLogolcon(String logolcon) {
+        this.logolcon = logolcon;
+    }
+
+    public Integer getCommunityId() {
+        return communityId;
+    }
+
+    public void setCommunityId(Integer communityId) {
+        this.communityId = communityId;
+    }
+
+    public List<T> getDepartmentList() {
+        return departmentList;
+    }
+
+    public void setDepartmentList(List<T> departmentList) {
+        this.departmentList = departmentList;
     }
 }

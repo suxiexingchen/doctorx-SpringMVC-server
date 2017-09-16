@@ -97,6 +97,12 @@ public interface SysConst {
      */
     String VIDEOTYPE_XY="xy";
 
+    /**
+     * programType栏目类型：1-网络学院，2-慢性病管理
+     */
+     String programType_INTERNETCollege="1";
+     String programType_CHRONICDISEASE="2";
+
 
     /**
      * 推送服务的notification_title标题

@@ -96,6 +96,12 @@ public class UserDoctorInfo implements Serializable {
     @Column(name = "tvn", length = 255)
     private String tvn;
 
+    /**
+     * 是否是家庭医生 0不是 1是
+     */
+    @Column(name = "isFamilyDoctor", length = 11)
+    private Integer isFamilyDoctor;
+
     public String getTvn() {
         return tvn;
     }
@@ -197,5 +203,13 @@ public class UserDoctorInfo implements Serializable {
 
     public void setInputOperId(String inputOperId) {
         this.inputOperId = inputOperId;
+    }
+
+    public Integer getIsFamilyDoctor() {
+        return isFamilyDoctor;
+    }
+
+    public void setIsFamilyDoctor(Integer isFamilyDoctor) {
+        this.isFamilyDoctor = isFamilyDoctor;
     }
 }
