@@ -12,4 +12,5 @@ import java.util.List;
 public interface UserService {
 
     public List<UserResponseU0001> getUserInfoByCommunityId(Integer communityId)throws SysException;
+    public void setTVN(UserRequestU0002 request)throws SysException;
 }

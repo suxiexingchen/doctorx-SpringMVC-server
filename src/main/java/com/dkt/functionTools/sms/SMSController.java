@@ -1,4 +1,4 @@
-package com.dkt.sms;
+package com.dkt.functionTools.sms;
 
 import com.dkt.common.CommonResponse;
 import com.dkt.common.SysConst;

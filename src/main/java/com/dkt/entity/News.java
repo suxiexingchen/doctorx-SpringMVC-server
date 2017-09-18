@@ -69,6 +69,12 @@ public class News implements Serializable {
     @Column(name = "url", length = 200)
     private String url;
 
+    /**
+     * 是否发布：0-未发布 1-发布
+     */
+    @Column(name = "isPublish", length = 11)
+    private Integer isPublish;
+
     public Integer getNewsid() {
         return newsid;
     }
@@ -141,4 +147,11 @@ public class News implements Serializable {
         this.url = url;
     }
 
+    public Integer getIsPublish() {
+        return isPublish;
+    }
+
+    public void setIsPublish(Integer isPublish) {
+        this.isPublish = isPublish;
+    }
 }

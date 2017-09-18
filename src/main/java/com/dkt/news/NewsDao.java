@@ -12,5 +12,5 @@ import java.util.List;
  */
 public interface NewsDao extends IBaseDao<News> {
 
-    public List<News> getListNews();
+    public List<News> getListNewsByIsPublish();
 }

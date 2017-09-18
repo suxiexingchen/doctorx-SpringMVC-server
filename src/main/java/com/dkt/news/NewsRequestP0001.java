@@ -7,4 +7,16 @@ package com.dkt.news;
  */
 public class NewsRequestP0001 {
 
+    /**
+     * 是否发布：0-未发布 1-发布
+     */
+    private Integer isPublish;
+
+    public Integer getIsPublish() {
+        return isPublish;
+    }
+
+    public void setIsPublish(Integer isPublish) {
+        this.isPublish = isPublish;
+    }
 }

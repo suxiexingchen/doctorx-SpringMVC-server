@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,5 +39,26 @@ public class UserServiceImpl implements UserService{
         }
 
         return list;
+    }
+
+    /**
+     * 设置用户的tvn号
+     * @param request
+     * @throws SysException
+     */
+    @Transactional
+    public void setTVN(UserRequestU0002 request) throws SysException {
+        List<UserInfo> userList = userDao.getUserByTVN(request.getTvn());
+        for (UserInfo user:userList) {
+            user.setTvn(null);
+            userDao.update(user);
+
+        }
+        UserInfo info = userDao.get(UserInfo.class, request.getUserId());
+        if (info!=null) {
+            info.setTvn(request.getTvn());
+            userDao.update(info);
+            log.debug("设置usertvn号设置成功");
+        }
     }
 }

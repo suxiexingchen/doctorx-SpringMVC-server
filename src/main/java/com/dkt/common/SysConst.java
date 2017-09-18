@@ -15,6 +15,12 @@ public interface SysConst {
      */
     String ROLE_DOCTOR = "2";
 
+    /**登录用户角色*/
+    /**
+     * 普通用户.
+     */
+    String ROLE_USER = "1";
+
     /**账号锁定状态*/
     /**
      * 锁定.
@@ -120,4 +126,14 @@ public interface SysConst {
     //String  PREFIX_URL="http://10.63.64.70:8099/dkt/";//河南有线地址
     //String  PREFIX_URL="http://192.168.31.78:8080/";//本地测试地址
     String  PREFIX_URL="http://api.wanjiayishi.com/dkt/";//本地测试地址
+
+    /**
+     * 小鱼视频的enterpriseld值
+     */
+    String XY_ENTERPRISELD="f6ad6abb325d19cece25642d92b95ec5a133bc2a";
+
+    /**
+     * 小鱼视频的token值
+     */
+    String XY_TOKEN="c2af3c8fcda71a10a58bc9e0f4fa860828e0e9409fd0ee5e9c4550c2253bfa22";
 }

@@ -13,5 +13,7 @@ import java.util.List;
 public interface UserDao extends IBaseDao<UserInfo> {
 
     public List<UserInfo> getUserInfoByCommunityId(Integer communityId);
+    //根据TVN的值找到
+    public List<UserInfo> getUserByTVN(String TVN);
 
 }

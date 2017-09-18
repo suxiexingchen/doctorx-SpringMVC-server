@@ -30,4 +30,17 @@ public class UserDaoImpl extends BaseDao<UserInfo> implements UserDao {
         }
         return list;
     }
+
+    //根据TVN号查找用户
+
+    public List<UserInfo> getUserByTVN(String tvn) {
+
+        List<UserInfo> list = new ArrayList<UserInfo>();
+        StringBuilder whereSql = new StringBuilder("from UserInfo ui where ui.tvn = ?");
+        List<String> params = new ArrayList<String>();
+        params.add(tvn);
+        list = getListByHQL(whereSql.toString(), null, params.toArray());
+
+        return list;
+    }
 }

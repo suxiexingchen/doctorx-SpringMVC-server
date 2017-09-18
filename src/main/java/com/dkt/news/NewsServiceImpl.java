@@ -27,7 +27,7 @@ public class NewsServiceImpl implements NewsService {
 
     public List<NewsResponseR0001> getNewsList(){
         List<NewsResponseR0001> lists=new ArrayList<>();
-        List<News> listNews = newsDao.getListNews();
+        List<News> listNews = newsDao.getListNewsByIsPublish();
 
         if (null!=listNews&&listNews.size()>0){
             log.debug("已获取news信息");
@@ -38,7 +38,6 @@ public class NewsServiceImpl implements NewsService {
                 try {
                     newsResponseR0001.setCommitTime(ns.getCommitTime().getTime());
                 } catch (Exception e) {
-                    e.printStackTrace();
                     newsResponseR0001.setCommitTime(null);
                     log.debug("时间转换异常");
                 }

@@ -1,4 +1,4 @@
-package com.dkt.JPush;
+package com.dkt.functionTools.JPush;
 
 /**
  * @author 馒头花卷儿

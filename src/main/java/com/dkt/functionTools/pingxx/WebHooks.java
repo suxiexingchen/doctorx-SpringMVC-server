@@ -1,4 +1,4 @@
-package com.dkt.pingxx;
+package com.dkt.functionTools.pingxx;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.RequestBody;

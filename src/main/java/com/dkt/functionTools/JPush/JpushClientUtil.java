@@ -1,4 +1,4 @@
-package com.dkt.JPush;
+package com.dkt.functionTools.JPush;
 
 import cn.jiguang.common.resp.APIConnectionException;
 import cn.jiguang.common.resp.APIRequestException;

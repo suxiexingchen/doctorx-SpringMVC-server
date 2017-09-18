@@ -39,7 +39,7 @@ public class TVLoginServiceImpl implements TVLoginService{
                 sdkMeetingReq.setMeetingName(info.getDoctorName());
 
                 CreateMeetingApi createMeetingApi = new CreateMeetingApi();
-                SdkMeeting sdkMeeting = createMeetingApi.createMeeting("f6ad6abb325d19cece25642d92b95ec5a133bc2a", "c2af3c8fcda71a10a58bc9e0f4fa860828e0e9409fd0ee5e9c4550c2253bfa22", sdkMeetingReq);
+                SdkMeeting sdkMeeting = createMeetingApi.createMeeting(SysConst.XY_ENTERPRISELD, SysConst.XY_TOKEN, sdkMeetingReq);
                 log.info("会议室创建成功" + sdkMeeting.getMeetingNumber());
 
                 info.setTvn(sdkMeeting.getMeetingNumber());

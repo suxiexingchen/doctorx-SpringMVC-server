@@ -1,7 +1,5 @@
-package com.dkt.pingxx;
+package com.dkt.functionTools.pingxx;
 
-import com.dkt.common.CommonResponse;
-import com.google.gson.Gson;
 import com.pingplusplus.Pingpp;
 import com.pingplusplus.exception.*;
 import com.pingplusplus.model.Charge;

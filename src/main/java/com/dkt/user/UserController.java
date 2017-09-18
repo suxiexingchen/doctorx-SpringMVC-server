@@ -47,4 +47,18 @@ public class UserController {
         return wr;
     }
 
+
+    //设置用户tvn号码
+    @RequestMapping("/external/setUserTvn")
+    public CommonResponse setTVN(@RequestBody UserRequestU0002 request){
+        CommonResponse wr=new CommonResponse();
+        try {
+            userService.setTVN(request);
+        } catch (SysException e) {
+            wr.setStatus(SysConst.STATUS_ERROR);
+            wr.setErrorCode(e.getCode());
+            wr.setErrorMsg(e.getError());
+        }
+        return wr;
+    }
 }

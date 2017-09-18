@@ -1,4 +1,4 @@
-package com.dkt.JPush;
+package com.dkt.functionTools.JPush;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

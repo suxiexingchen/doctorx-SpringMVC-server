@@ -1,4 +1,4 @@
-package com.dkt.JPush;
+package com.dkt.functionTools.JPush;
 
 import com.dkt.common.CommonResponse;
 import com.dkt.common.SysConst;

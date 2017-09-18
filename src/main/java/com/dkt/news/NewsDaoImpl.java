@@ -16,15 +16,11 @@ import java.util.List;
 @Repository
 public class NewsDaoImpl extends BaseDao<News> implements NewsDao{
 
-    public List<News> getListNews() {
+    public List<News> getListNewsByIsPublish() {
 
         List<News> list = new ArrayList<News>();
-        StringBuilder whereSql = new StringBuilder("from News ns where 1=1");
+        StringBuilder whereSql = new StringBuilder("from News ns where ns.isPublish = 1 order by ns.commitTime desc");
 
-             //List<String> params = new ArrayList<String>();
-            //whereSql.append(" and ui.doctorWay = ? ");
-            //params.add("1");
-            //whereSql.append(" order by ui.doctorWay desc ");
 
         list = getListByHQL(whereSql.toString(), null, null);
 

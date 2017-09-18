@@ -1,4 +1,4 @@
-package com.dkt.pingxx;
+package com.dkt.functionTools.pingxx;
 
 /**
  * Created by linkd on 2017/7/5.

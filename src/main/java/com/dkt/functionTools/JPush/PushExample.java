@@ -1,4 +1,4 @@
-package com.dkt.JPush;
+package com.dkt.functionTools.JPush;
 
 import java.net.URI;
 import java.net.URISyntaxException;
